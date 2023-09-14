@@ -4,7 +4,7 @@
 
 ## Notify - A simple schedule application
 
-Концепт в Figma.
+Концепт UI дизайна приложения, которое позволит выводить виджеты на рабочем столе с расписанием и уведомлениями.
 
 <details>
 <summary > Screenshots</summary>
