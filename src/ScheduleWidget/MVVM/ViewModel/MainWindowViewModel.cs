@@ -1,4 +1,5 @@
 ﻿using ScheduleWidget.Core;
+using ScheduleWidget.MVVM.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,37 +12,53 @@ namespace ScheduleWidget.MVVM.ViewModel
 {
     internal class MainWindowViewModel : ObservableObject
     {
+        private ObservableCollection<EditDayModel> _scheduleDays;
 
-        private object _currentView;
-
-        public object CurrentView
+        public ObservableCollection<EditDayModel> ScheduleDays
         {
-            get { return _currentView; }
-            set { _currentView = value; NotifyPropertyChanged(); }
+            get { return _scheduleDays; }
+            set { _scheduleDays = value; NotifyPropertyChanged(); }
         }
 
-        private ObservableCollection<string> _ScheduleItems;
 
-        public ObservableCollection<string> ScheduleItems
-        {
-            get { return _ScheduleItems; }
-            set { _ScheduleItems = value; NotifyPropertyChanged(); }
-        }
-
-        public RelayCommand AddItemCommand { get; set; }
+        #region BUTTONS_COMMAND
+        public RelayCommand AddScheduleCommand { get; set; }
+        public RelayCommand AddDayCommand { get; set; }
+        public RelayCommand EditDayCommand { get; set; }
+        #endregion
         public MainWindowViewModel()
         {
-            CurrentView = new object();
-            ScheduleItems = new ObservableCollection<string>();
+            ScheduleDays = new ObservableCollection<EditDayModel>();
 
-            AddItemCommand = new RelayCommand(o =>
+            AddScheduleCommand = new RelayCommand(o =>
             {
 
-                ScheduleItems.Add("dura dora");
             });
-
+            AddDayCommand = new RelayCommand(o => AddDay());
+            EditDayCommand = new RelayCommand(o=> EditDay());
+        }
+        private void AddDay()
+        {
+            if (ScheduleDays.Count == 7)
+                return;
+            ScheduleDays.Add(new EditDayModel()
+            {
+                EditDayCommand = EditDayCommand
+            });
         }
 
+        private void EditDay()
+        {
+            EditDayViewModel editDayViewModel = new EditDayViewModel();
+            EditDayWindowView editDayWindowView = new EditDayWindowView();
+            editDayWindowView.DataContext = editDayViewModel;
+            editDayWindowView.Owner = App.Current.MainWindow;
+            editDayWindowView.ShowDialog();
+        }
 
+    }
+    internal class EditDayModel
+    {
+        public RelayCommand EditDayCommand { get; set; }
     }
 }
