@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScheduleWidget.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,23 @@ namespace ScheduleWidget
         public MainWindow()
         {
             InitializeComponent();
+            taskBarIcon.LeftClickCommand = new RelayCommand(o =>
+            {
+                if (WindowState == WindowState.Minimized)
+                {
+                    WindowState = WindowState.Normal;
+
+                }
+                else
+                {
+                    WindowState = WindowState.Minimized;
+                }
+            });
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //test.Items.Add(new object());
         }
     }
 }
