@@ -17,7 +17,7 @@ namespace ConsoleParser
         public static void ParseXlsx(string filePath)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-
+            
             using (var package = new ExcelPackage(new FileInfo(filePath)))
             {
                 var worksheet = package.Workbook.Worksheets[0];
@@ -30,12 +30,19 @@ namespace ConsoleParser
                     {
 
                         var cellValue = worksheet.Cells[row, col].Value;
-                        Console.WriteLine($"Row number: {row} column number: {col} Cell value: {cellValue} ");
+                        if (cellValue is null) continue;
+                        Console.WriteLine($"Row number: {row} column number: {col} Cell value: {(cellValue == null ? "null": cellValue)} ");
 
                     }
                 }
                 Console.WriteLine("Thats all");
+
+                var value = worksheet.Cells[1, 3].Value.ToString();
+                var str = value.Trim();
+                Console.WriteLine(str);
+
             }
+
         }
     }
 }
