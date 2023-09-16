@@ -10,27 +10,89 @@
         AllowsTransparency="True"
         ShowInTaskbar="False"
         
-        Height="300" Width="450" Background="#FFBFBFBF">
+        Height="300" Width="450" Background="#D9D9D9">
     <Grid>
-        <TextBlock Text="Monday" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14" Margin="15,5,0,0"/>
+        <TextBlock Text="Monday"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Foreground="White"
+                   FontSize="15"
+                   Margin="15,5,0,0"/>
         <Button HorizontalAlignment="Right" VerticalAlignment="Top"
                 Content="✕" Foreground="Black" BorderThickness="0"
                 Background="Transparent" Margin="0,5,15,0"/>
         <ItemsControl HorizontalAlignment="Stretch"
                       VerticalAlignment="Top"
                       Margin="5,35,5,0"
-                      Height="220">
+                      Height="220"
+                      ItemsSource="{Binding LessonsList}"
+                      >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button/>
+                    <Border BorderThickness="0" HorizontalAlignment="Stretch" Height="50"
+                            Background="#AD000000" CornerRadius="2"
+                            Margin="0,0,0,3">
+                        <Grid>
+                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top"
+                                        Orientation="Horizontal" Margin="7,6,0,0">
+                                <TextBlock Text="1."
+                                       FontSize="15"
+                                       Foreground="White"
+                                       />
+                                <TextBox Text="Пара #1" BorderThickness="0"
+                                         Foreground="White" VerticalContentAlignment="Center"
+                                         FontSize="15" Background="Transparent"
+                                     />
+                            </StackPanel>
+                            
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                        Margin="5,0,0,6">
+                                <Path Data="M18 10.5V18L21.75 15.75M31.5 18C31.5 25.4559 25.4559 31.5 18 31.5C10.5442 31.5 4.5 25.4559 4.5 18C4.5 10.5442 10.5442 4.5 18 4.5C25.4559 4.5 31.5 10.5442 31.5 18Z"
+                                      Fill="Transparent" StrokeThickness="1" Stretch="Uniform"
+                                      Stroke="White"
+                                      Height="14" Width="14"
+                                      />
+                                <TextBlock Foreground="White" VerticalAlignment="Center"
+                                           Margin="3,0,0,0" FontSize="11">
+                                    <Run Text="08:00"/>
+                                    <Run Text="-"/>
+                                    <Run Text="09:30"/>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center"
+                                        Margin="3,0,4,0">
+                                <TextBox Text="ФИО препода" BorderThickness="0"
+                                         Foreground="White" VerticalContentAlignment="Center"
+                                         FontSize="12" Background="Transparent"
+                                     />
+                                <TextBox Text="308А" BorderThickness="0"
+                                         Foreground="White" VerticalContentAlignment="Center"
+                                         FontSize="11" Background="Transparent"
+                                     />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <Button HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                Height="30" Width="125" Content="Add lesson"
-                BorderThickness="0" Margin="5" Background="#FF969494"/>
-        <Button HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                Height="30" Width="125" Content="Save"
-                BorderThickness="0" Margin="5"/>
+                Height="30" Width="125" Content="Add lesson" Foreground="White"
+                BorderThickness="0" Margin="5" Background="#616161">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="White"
+                Height="30" Width="125" Content="Save" Background="#979696"
+                BorderThickness="0" Margin="5">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Window>

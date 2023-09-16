@@ -12,8 +12,11 @@
         Height="400" Width="270" Background="#66131313"
         Topmost="False">
     <Grid>
-        <TextBlock Text="Schedule for Monday" HorizontalAlignment="Center" VerticalAlignment="Top"
-                   Margin="3" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top"
+                   Margin="3" Foreground="Gray">
+            <Run Text="Schedule for"/>
+            <Bold>Monday</Bold>
+        </TextBlock>
         <Button HorizontalAlignment="Right" VerticalAlignment="Top"
                 Content="✕" FontSize="8"
                 BorderThickness="0" Background="Transparent" Foreground="Gray"/>
