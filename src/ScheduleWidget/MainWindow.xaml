@@ -46,8 +46,18 @@
 
             <Button Style="{StaticResource AddButtonStyle}" Click="Button_Click"/>
         </ItemsControl>-->
-
-        <ItemsControl ItemsSource="{Binding ScheduleItems}" Width="160"
+        <Border HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="22"
+                BorderThickness="0" Background="#FF3E3E3E" >
+            <Grid>
+                <TextBlock Text="Notify" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"
+                           FontFamily="/Assets/Fonts/#Inter Medium" Margin="5,0,0,0"/>
+                <Button HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"
+                        BorderThickness="0" Background="Transparent" Content="✕" Foreground="Gray" Height="20" Width="20"/>
+                <Button HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,25,0"
+                        BorderThickness="0" Background="Transparent" Content="—" Foreground="Gray" Height="20" Width="20"/>
+            </Grid>
+        </Border>
+        <ItemsControl ItemsSource="{Binding ScheduleItems}" Width="160" Margin="0,25,0,0"
                       HorizontalAlignment="Left" VerticalAlignment="Stretch">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
@@ -116,7 +126,7 @@
             </ItemsControl.Template>
 
         </ItemsControl>
-        <Button HorizontalAlignment="Center" VerticalAlignment="Top" Content="Включить виджет"
-                Command="{Binding TurnWidget}"/>
+        <!--<Button HorizontalAlignment="Center" VerticalAlignment="Top" Content="Включить виджет"
+                Command="{Binding TurnWidget}"/>-->
     </Grid>
 </Window>
