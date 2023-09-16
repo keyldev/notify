@@ -8,6 +8,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Fonts\Inter-Black.otf" />
+    <None Remove="Assets\Fonts\Inter-BlackItalic.otf" />
+    <None Remove="Assets\Fonts\Inter-Bold.otf" />
+    <None Remove="Assets\Fonts\Inter-BoldItalic.otf" />
+    <None Remove="Assets\Fonts\Inter-ExtraBold.otf" />
+    <None Remove="Assets\Fonts\Inter-ExtraBoldItalic.otf" />
+    <None Remove="Assets\Fonts\Inter-ExtraLight.otf" />
+    <None Remove="Assets\Fonts\Inter-ExtraLightItalic.otf" />
+    <None Remove="Assets\Fonts\Inter-Italic.otf" />
+    <None Remove="Assets\Fonts\Inter-Light.otf" />
+    <None Remove="Assets\Fonts\Inter-LightItalic.otf" />
+    <None Remove="Assets\Fonts\Inter-Medium.otf" />
+    <None Remove="Assets\Fonts\Inter-MediumItalic.otf" />
+    <None Remove="Assets\Fonts\Inter-Regular.otf" />
+    <None Remove="Assets\Fonts\Inter-SemiBold.otf" />
+    <None Remove="Assets\Fonts\Inter-SemiBoldItalic.otf" />
+    <None Remove="Assets\Fonts\Inter-Thin.otf" />
+    <None Remove="Assets\Fonts\Inter-ThinItalic.otf" />
+    <None Remove="Assets\Fonts\Inter-V.ttf" />
     <None Remove="Assets\icon.ico" />
   </ItemGroup>
 
@@ -20,6 +39,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Fonts\Inter-Black.otf" />
+    <Resource Include="Assets\Fonts\Inter-BlackItalic.otf" />
+    <Resource Include="Assets\Fonts\Inter-Bold.otf" />
+    <Resource Include="Assets\Fonts\Inter-BoldItalic.otf" />
+    <Resource Include="Assets\Fonts\Inter-ExtraBold.otf" />
+    <Resource Include="Assets\Fonts\Inter-ExtraBoldItalic.otf" />
+    <Resource Include="Assets\Fonts\Inter-ExtraLight.otf" />
+    <Resource Include="Assets\Fonts\Inter-ExtraLightItalic.otf" />
+    <Resource Include="Assets\Fonts\Inter-Italic.otf" />
+    <Resource Include="Assets\Fonts\Inter-Light.otf" />
+    <Resource Include="Assets\Fonts\Inter-LightItalic.otf" />
+    <Resource Include="Assets\Fonts\Inter-Medium.otf" />
+    <Resource Include="Assets\Fonts\Inter-MediumItalic.otf" />
+    <Resource Include="Assets\Fonts\Inter-Regular.otf" />
+    <Resource Include="Assets\Fonts\Inter-SemiBold.otf" />
+    <Resource Include="Assets\Fonts\Inter-SemiBoldItalic.otf" />
+    <Resource Include="Assets\Fonts\Inter-Thin.otf" />
+    <Resource Include="Assets\Fonts\Inter-ThinItalic.otf" />
+    <Resource Include="Assets\Fonts\Inter-V.ttf" />
     <Resource Include="Assets\icon.ico" />
   </ItemGroup>
 
