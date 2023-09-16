@@ -25,6 +25,9 @@ namespace ScheduleWidget.MVVM.ViewModel
         public RelayCommand AddScheduleCommand { get; set; }
         public RelayCommand AddDayCommand { get; set; }
         public RelayCommand EditDayCommand { get; set; }
+
+        public RelayCommand TurnWidget { get; set; }
+
         #endregion
         public MainWindowViewModel()
         {
@@ -35,7 +38,14 @@ namespace ScheduleWidget.MVVM.ViewModel
 
             });
             AddDayCommand = new RelayCommand(o => AddDay());
-            EditDayCommand = new RelayCommand(o=> EditDay());
+            EditDayCommand = new RelayCommand(o => EditDay());
+            TurnWidget = new RelayCommand(o =>
+            {
+                WidgetWindowView widgetWindow = new WidgetWindowView();
+                WidgetViewModel editWidgetViewModel = new WidgetViewModel();
+                widgetWindow.DataContext = editWidgetViewModel;
+                widgetWindow.Show();
+            });
         }
         private void AddDay()
         {

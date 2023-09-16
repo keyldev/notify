@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="Notify"
         
-        
+        FontFamily="/Assets/Fonts/#Inter Regular"
         AllowsTransparency="True"
         WindowStyle="None"
         
@@ -71,7 +71,7 @@
 
         </ItemsControl>
         <ItemsControl ItemsSource="{Binding ScheduleDays}" Width="635"
-                      HorizontalAlignment="Left" Margin="165,0,0,0">
+                      HorizontalAlignment="Left" Margin="165,25,0,0">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="4"/>
@@ -116,5 +116,7 @@
             </ItemsControl.Template>
 
         </ItemsControl>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Top" Content="Включить виджет"
+                Command="{Binding TurnWidget}"/>
     </Grid>
 </Window>

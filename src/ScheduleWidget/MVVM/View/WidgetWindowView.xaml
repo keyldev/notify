@@ -10,6 +10,7 @@
         AllowsTransparency="True"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         Height="400" Width="270" Background="#66131313"
+        FontFamily="/Assets/Fonts/#Inter Regular"
         Topmost="False">
     <Grid>
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top"
@@ -20,5 +21,23 @@
         <Button HorizontalAlignment="Right" VerticalAlignment="Top"
                 Content="✕" FontSize="8"
                 BorderThickness="0" Background="Transparent" Foreground="Gray"/>
+        <ItemsControl Margin="0,20,0,0" ItemsSource="{Binding LessonsList}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="3" CornerRadius="0" BorderThickness="0" Background="#99000000"
+                            HorizontalAlignment="Stretch" Height="50">
+                        <Grid>
+                            <TextBlock Text="Пара 1" Foreground="Gray" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                       Margin="10"
+                                       />
+                            <TextBlock Text="ФИО Препода" Foreground="Gray" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                       Margin="10,0,0,10"/>
+                            <TextBlock Text="309A" Foreground="Gray" FontSize="10" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                       Margin="0,0,10,10"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </Window>

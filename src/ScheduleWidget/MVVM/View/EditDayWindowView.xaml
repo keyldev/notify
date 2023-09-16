@@ -9,7 +9,7 @@
         WindowStyle="None" ResizeMode="NoResize"
         AllowsTransparency="True"
         ShowInTaskbar="False"
-        
+        FontFamily="/Assets/Fonts/#Inter Regular"
         Height="300" Width="450" Background="#D9D9D9">
     <Grid>
         <TextBlock Text="Monday"
