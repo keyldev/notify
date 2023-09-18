@@ -25,7 +25,18 @@ namespace ScheduleWidget.MVVM.ViewModel
         public ObservableCollection<object> ScheduleItems
         {
             get { return _ScheduleItems; }
-            set { _ScheduleItems = value; NotifyPropertyChanged(); }
+            set
+            {
+                _ScheduleItems = value; NotifyPropertyChanged();
+            }
+        }
+
+        private Visibility _daysPanelVisibilty = Visibility.Collapsed;
+
+        public Visibility DaysPanelVisibility
+        {
+            get { return _daysPanelVisibilty; }
+            set { _daysPanelVisibilty = value; NotifyPropertyChanged(); }
         }
 
 
@@ -41,6 +52,7 @@ namespace ScheduleWidget.MVVM.ViewModel
         {
             ScheduleDays = new ObservableCollection<EditDayModel>();
             ScheduleItems = new ObservableCollection<object>();
+            ScheduleItems.CollectionChanged += ScheduleItems_CollectionChanged;
 
             AddScheduleCommand = new RelayCommand(o =>
             {
@@ -56,6 +68,12 @@ namespace ScheduleWidget.MVVM.ViewModel
                 widgetWindow.Show();
             });
         }
+
+        private void ScheduleItems_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            DaysPanelVisibility = (ScheduleItems.Count > 0 ? Visibility.Visible : Visibility.Collapsed);
+        }
+
         private void AddDay()
         {
             if (ScheduleDays.Count == 7)

@@ -86,7 +86,9 @@
 
         </ItemsControl>
         <ScrollViewer Width="635" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled"
-                      HorizontalAlignment="Left" Margin="165,50,0,0" CanContentScroll="True">
+                      HorizontalAlignment="Left" Margin="165,50,0,0" CanContentScroll="True"
+                      Visibility="{Binding DaysPanelVisibility}"
+                      >
             <ItemsControl ItemsSource="{Binding ScheduleDays}" >
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
