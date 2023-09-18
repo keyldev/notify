@@ -14,7 +14,10 @@
         WindowStyle="None"
         
         Height="450" Width="800"
-        Icon="/Assets/icon.ico">
+        Icon="/Assets/icon.ico"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        WindowStartupLocation="CenterScreen"
+        >
     <Window.DataContext>
         <viewModel:MainWindowViewModel/>
     </Window.DataContext>
@@ -29,13 +32,13 @@
     </Window.Resources>
 
     <Grid>
-        <taskBar:TaskbarIcon
+        <!--<taskBar:TaskbarIcon
             HorizontalAlignment="Left" VerticalAlignment="Top"
             x:Name="taskBarIcon"
             Visibility="Visible"
             ToolTipText="A simple icon"
            IconSource="/Assets/icon.ico"
-            />
+            />-->
         <!--<ItemsControl x:Name="test">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
@@ -51,9 +54,11 @@
             <Grid>
                 <TextBlock Text="NOTIFY" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"
                            FontFamily="/Assets/Fonts/#Inter" Margin="5,0,0,0"/>
-                <Button HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"
+                <Button x:Name="CloseAppButton" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"
+                        Click="CloseAppButton_Click"
                         BorderThickness="0" Background="Transparent" Content="✕" Foreground="Gray" Height="20" Width="20"/>
-                <Button HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,25,0"
+                <Button x:Name="HideAppButton" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,25,0"
+                        Click="HideAppButton_Click"
                         BorderThickness="0" Background="Transparent" Content="—" Foreground="Gray" Height="20" Width="20"/>
             </Grid>
         </Border>
@@ -80,52 +85,55 @@
             </ItemsControl.Template>
 
         </ItemsControl>
-        <ItemsControl ItemsSource="{Binding ScheduleDays}" Width="635"
-                      HorizontalAlignment="Left" Margin="165,25,0,0">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Columns="4"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Button 
+        <ScrollViewer Width="635" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled"
+                      HorizontalAlignment="Left" Margin="165,50,0,0" CanContentScroll="True">
+            <ItemsControl ItemsSource="{Binding ScheduleDays}" >
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button 
                         Content="Monday" FontSize="16"
                         Height="150" Width="150" Margin="2"
                             BorderThickness="0" Background="#7F1DBF1F"
                         Command="{Binding EditDayCommand}">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="4"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="4"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
 
-            <ItemsControl.Template>
-                <ControlTemplate TargetType="ItemsControl">
-                    <StackPanel Orientation="Horizontal">
-                        <ItemsPresenter />
-                        <Button BorderThickness="0"
+                <ItemsControl.Template>
+                    <ControlTemplate TargetType="ItemsControl">
+                        <StackPanel Orientation="Horizontal">
+                            <ItemsPresenter />
+                            <Button BorderThickness="0"
                                 Background="Transparent"
                                 Height="40" Width="40"
                                 Command="{Binding AddDayCommand}"
                                 HorizontalAlignment="Stretch"
                                 >
-                            <Button.ToolTip>
-                                <ToolTip Placement="Top">
-                                    Add day
-                                </ToolTip>
-                            </Button.ToolTip>
-                            <Path Data="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM12.75 9C12.75 8.58579 12.4142 8.25 12 8.25C11.5858 8.25 11.25 8.58579 11.25 9L11.25 11.25H9C8.58579 11.25 8.25 11.5858 8.25 12C8.25 12.4142 8.58579 12.75 9 12.75H11.25V15C11.25 15.4142 11.5858 15.75 12 15.75C12.4142 15.75 12.75 15.4142 12.75 15L12.75 12.75H15C15.4142 12.75 15.75 12.4142 15.75 12C15.75 11.5858 15.4142 11.25 15 11.25H12.75V9Z"
+                                <Button.ToolTip>
+                                    <ToolTip Placement="Top">
+                                        Add day
+                                    </ToolTip>
+                                </Button.ToolTip>
+                                <Path Data="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM12.75 9C12.75 8.58579 12.4142 8.25 12 8.25C11.5858 8.25 11.25 8.58579 11.25 9L11.25 11.25H9C8.58579 11.25 8.25 11.5858 8.25 12C8.25 12.4142 8.58579 12.75 9 12.75H11.25V15C11.25 15.4142 11.5858 15.75 12 15.75C12.4142 15.75 12.75 15.4142 12.75 15L12.75 12.75H15C15.4142 12.75 15.75 12.4142 15.75 12C15.75 11.5858 15.4142 11.25 15 11.25H12.75V9Z"
                                   Fill="#99000000" Stretch="Uniform"/>
-                        </Button>
-                    </StackPanel>
-                </ControlTemplate>
-            </ItemsControl.Template>
+                            </Button>
+                        </StackPanel>
+                    </ControlTemplate>
+                </ItemsControl.Template>
 
-        </ItemsControl>
+            </ItemsControl>
+        </ScrollViewer>
+        
         <!--<Button HorizontalAlignment="Center" VerticalAlignment="Top" Content="Включить виджет"
                 Command="{Binding TurnWidget}"/>-->
     </Grid>

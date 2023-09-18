@@ -20,6 +20,14 @@ namespace ScheduleWidget.MVVM.ViewModel
             set { _scheduleDays = value; NotifyPropertyChanged(); }
         }
 
+        private ObservableCollection<object> _ScheduleItems;
+
+        public ObservableCollection<object> ScheduleItems
+        {
+            get { return _ScheduleItems; }
+            set { _ScheduleItems = value; NotifyPropertyChanged(); }
+        }
+
 
         #region BUTTONS_COMMAND
         public RelayCommand AddScheduleCommand { get; set; }
@@ -32,10 +40,11 @@ namespace ScheduleWidget.MVVM.ViewModel
         public MainWindowViewModel()
         {
             ScheduleDays = new ObservableCollection<EditDayModel>();
+            ScheduleItems = new ObservableCollection<object>();
 
             AddScheduleCommand = new RelayCommand(o =>
             {
-
+                ScheduleItems.Add(new object());
             });
             AddDayCommand = new RelayCommand(o => AddDay());
             EditDayCommand = new RelayCommand(o => EditDay());

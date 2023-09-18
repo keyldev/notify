@@ -1,6 +1,7 @@
 ﻿using ScheduleWidget.Core;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,23 +25,37 @@ namespace ScheduleWidget
         public MainWindow()
         {
             InitializeComponent();
-            taskBarIcon.LeftClickCommand = new RelayCommand(o =>
-            {
-                if (WindowState == WindowState.Minimized)
+            var notifyIcon = new System.Windows.Forms.NotifyIcon();
+            notifyIcon.Icon = new System.Drawing.Icon("");
+            notifyIcon.Visible = true;
+            notifyIcon.MouseClick += (s, e) => {
+                if (e.Button == System.Windows.Forms.MouseButtons.Left)
                 {
-                    WindowState = WindowState.Normal;
-
+                    // Показываем окно приложения
+                    this.Show();
+                    this.WindowState = WindowState.Normal;
                 }
-                else
-                {
-                    WindowState = WindowState.Minimized;
-                }
-            });
+            };
+        }
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //test.Items.Add(new object());
+            this.DragMove();
+        }
+
+        private void CloseAppButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void HideAppButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
