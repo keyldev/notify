@@ -49,8 +49,8 @@
         <Border HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="22"
                 BorderThickness="0" Background="#FF3E3E3E" >
             <Grid>
-                <TextBlock Text="Notify" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"
-                           FontFamily="/Assets/Fonts/#Inter Medium" Margin="5,0,0,0"/>
+                <TextBlock Text="NOTIFY" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"
+                           FontFamily="/Assets/Fonts/#Inter" Margin="5,0,0,0"/>
                 <Button HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"
                         BorderThickness="0" Background="Transparent" Content="✕" Foreground="Gray" Height="20" Width="20"/>
                 <Button HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,25,0"
