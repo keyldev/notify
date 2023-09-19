@@ -15,7 +15,7 @@ namespace ScheduleWidget.Core.Data
         public DbSet<ScheduleModel> Schedules { get; set; }
         public ApplicationDbContext()
         {
-
+            Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

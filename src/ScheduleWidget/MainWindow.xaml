@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:ScheduleWidget.MVVM.ViewModel"
         xmlns:local="clr-namespace:ScheduleWidget"
-        xmlns:taskBar="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
         Title="Notify"
         
@@ -32,13 +31,6 @@
     </Window.Resources>
 
     <Grid>
-        <!--<taskBar:TaskbarIcon
-            HorizontalAlignment="Left" VerticalAlignment="Top"
-            x:Name="taskBarIcon"
-            Visibility="Visible"
-            ToolTipText="A simple icon"
-           IconSource="/Assets/icon.ico"
-            />-->
         <!--<ItemsControl x:Name="test">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
@@ -66,8 +58,8 @@
                       HorizontalAlignment="Left" VerticalAlignment="Stretch">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Content="Schedule 1" Height="30" Width="Auto" Margin="2"
-                            BorderThickness="0"/>
+                    <Button Content="{Binding Name}" Height="30" Width="Auto" Margin="2"
+                            BorderThickness="0" Command="{Binding LoadScheduleCommand}"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
 
@@ -85,6 +77,8 @@
             </ItemsControl.Template>
 
         </ItemsControl>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,535,0" Content="Save"
+                BorderThickness="0" Height="22" Width="100"/>
         <ScrollViewer Width="635" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled"
                       HorizontalAlignment="Left" Margin="165,50,0,0" CanContentScroll="True"
                       Visibility="{Binding DaysPanelVisibility}"

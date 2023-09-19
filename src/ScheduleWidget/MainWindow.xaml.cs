@@ -26,7 +26,7 @@ namespace ScheduleWidget
         {
             InitializeComponent();
             var notifyIcon = new System.Windows.Forms.NotifyIcon();
-            notifyIcon.Icon = new System.Drawing.Icon("");
+            notifyIcon.Icon = new System.Drawing.Icon(AppDomain.CurrentDomain.BaseDirectory + "/icon.ico");
             notifyIcon.Visible = true;
             notifyIcon.MouseClick += (s, e) => {
                 if (e.Button == System.Windows.Forms.MouseButtons.Left)

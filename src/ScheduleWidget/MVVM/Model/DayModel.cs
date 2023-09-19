@@ -11,6 +11,7 @@ namespace ScheduleWidget.MVVM.Model
     {
         [Key]
         public Guid Id { get; set; }
+        public Guid ScheduleId { get; set; }
 
         public string Name { get; set; }
 
