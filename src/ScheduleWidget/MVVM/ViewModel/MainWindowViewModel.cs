@@ -85,7 +85,7 @@ namespace ScheduleWidget.MVVM.ViewModel
                 db.Schedules.Add(schedule);
                 db.SaveChanges();
 
-                // fix it, kostyl
+                // fix it, kostyl ili net
                 schedule.LoadScheduleCommand = new RelayCommand(o => { LoadScheduleDays(schedule.Id); });
                 _guidTest = schedule.Id;
                 ScheduleItems.Add(schedule);
