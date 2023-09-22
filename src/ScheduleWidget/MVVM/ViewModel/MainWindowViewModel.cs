@@ -161,7 +161,8 @@ namespace ScheduleWidget.MVVM.ViewModel
     internal class EditDayModel
     {
         public Guid DayId { get; set; }
-        public string DayName { get; set; }
+        public string? DayName { get; set; }
+        public string DayDescription { get; set; }
 
         public RelayCommand EditDayCommand { get; set; }
     }
