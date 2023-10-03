@@ -17,5 +17,8 @@ namespace ScheduleWidget.MVVM.Model
         public int ScheduleId { get; set; }
         public ScheduleModel Schedule { get; set; }
         public List<LessonModel> Lessons { get; set; }
+
+        [NotMapped]
+        public RelayCommand LoadLessonsCommand { get; set; }
     }
 }

@@ -12,7 +12,7 @@
         FontFamily="/Assets/Fonts/#Inter Regular"
         Height="300" Width="450" Background="#D9D9D9">
     <Grid>
-        <TextBlock Text="Monday"
+        <TextBlock Text="{Binding DayName}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Foreground="White"
@@ -20,7 +20,8 @@
                    Margin="15,5,0,0"/>
         <Button HorizontalAlignment="Right" VerticalAlignment="Top"
                 Content="✕" Foreground="Black" BorderThickness="0"
-                Background="Transparent" Margin="0,5,15,0"/>
+                Background="Transparent" Margin="0,5,15,0"
+                Command="{Binding SaveLessonsCommand}"/>
         <ItemsControl HorizontalAlignment="Stretch"
                       VerticalAlignment="Top"
                       Margin="5,35,5,0"
@@ -35,11 +36,11 @@
                         <Grid>
                             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top"
                                         Orientation="Horizontal" Margin="7,6,0,0">
-                                <TextBlock Text="1."
+                                <TextBlock Text="{Binding Number}"
                                        FontSize="15"
                                        Foreground="White"
                                        />
-                                <TextBox Text="Пара #1" BorderThickness="0"
+                                <TextBox Text="{Binding Name}" BorderThickness="0"
                                          Foreground="White" VerticalContentAlignment="Center"
                                          FontSize="15" Background="Transparent"
                                      />
@@ -62,7 +63,7 @@
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center"
                                         Margin="3,0,4,0">
-                                <TextBox Text="ФИО препода" BorderThickness="0"
+                                <TextBox Text="{Binding TeacherName}" BorderThickness="0"
                                          Foreground="White" VerticalContentAlignment="Center"
                                          FontSize="12" Background="Transparent"
                                      />
@@ -78,7 +79,7 @@
         </ItemsControl>
         <Button HorizontalAlignment="Left" VerticalAlignment="Bottom"
                 Height="30" Width="125" Content="Add lesson" Foreground="White"
-                BorderThickness="0" Margin="5" Background="#616161">
+                BorderThickness="0" Margin="5" Background="#616161" Command="{Binding AddNewLessonCommand}">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="3"/>
@@ -87,7 +88,7 @@
         </Button>
         <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="White"
                 Height="30" Width="125" Content="Save" Background="#979696"
-                BorderThickness="0" Margin="5">
+                BorderThickness="0" Margin="5" Command="{Binding SaveLessonsCommand}">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="3"/>

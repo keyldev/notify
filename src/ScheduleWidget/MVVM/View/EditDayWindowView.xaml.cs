@@ -19,9 +19,12 @@ namespace ScheduleWidget.MVVM.View
     /// </summary>
     public partial class EditDayWindowView : Window
     {
+        public static EditDayWindowView Instance { get; private set; }
+
         public EditDayWindowView()
         {
             InitializeComponent();
+            Instance = this;
         }
     }
 }

@@ -16,5 +16,8 @@ namespace ScheduleWidget.MVVM.Model
         public string Name { get; set; }
         public List<DayModel> Days { get; set; }
 
+        [NotMapped]
+        public RelayCommand LoadScheduleCommand { get; set; }
+
     }
 }

@@ -3,6 +3,7 @@ using ScheduleWidget.Core.Data;
 using ScheduleWidget.MVVM.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,11 @@ namespace ScheduleWidget.Core.Services
         {
             _dbContext.Days.Add(day);
             _dbContext.SaveChanges();
+        }
+
+        public List<DayModel> GetDaysById(int id)
+        {
+            return _dbContext.Days.Where(d=> d.ScheduleId == id).ToList();
         }
 
         public void EditDay(DayModel day)

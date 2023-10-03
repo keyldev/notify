@@ -35,7 +35,7 @@ namespace ScheduleWidget.MVVM.ViewModel
             }
         }
 
-        private Visibility _daysPanelVisibilty = Visibility.Collapsed;
+        private Visibility _daysPanelVisibilty = Visibility.Visible;
 
         public Visibility DaysPanelVisibility
         {
@@ -69,21 +69,36 @@ namespace ScheduleWidget.MVVM.ViewModel
         public MainWindowViewModel()
         {
             _scheduleService = new ScheduleService();
-
+            ScheduleItems = new ObservableCollection<ScheduleModel>(_scheduleService.LoadSchedules());
             ScheduleDays = new ObservableCollection<DayModel>();
-            ScheduleItems = new ObservableCollection<ScheduleModel>();
 
-            
-
+            foreach (var schedule in ScheduleItems)
+            {
+                schedule.LoadScheduleCommand = new RelayCommand(o =>
+                {
+                    OpenDays(schedule.Id);
+                });
+            }
         }
+        private void OpenDays(int id)
+        {
+            var days = _scheduleService.GetDaysById(id);
+            ScheduleDays.Clear();
 
-        private void ScheduleItems_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            DaysPanelVisibility = (ScheduleItems.Count > 0 ? Visibility.Visible : Visibility.Collapsed);
+            foreach(var day in days)
+            {
+                day.LoadLessonsCommand = new RelayCommand(o =>
+                {
+                    System.Windows.MessageBox.Show(" The day id is " + day.Id);
+                    EditDay(day.Id);
+                });
+                ScheduleDays.Add(day);
+            }
         }
-        private void EditDay(Guid dayId)
+        private void EditDay(int dayId)
         {
-            EditDayViewModel editDayViewModel = new EditDayViewModel();
+            EditDayViewModel editDayViewModel = new EditDayViewModel(dayId);
+            //editDayViewModel.DayId = dayId;
             EditDayWindowView editDayWindowView = new EditDayWindowView();
             editDayWindowView.DataContext = editDayViewModel;
             editDayWindowView.Owner = App.Current.MainWindow;
@@ -91,5 +106,5 @@ namespace ScheduleWidget.MVVM.ViewModel
         }
 
     }
-   
+
 }
