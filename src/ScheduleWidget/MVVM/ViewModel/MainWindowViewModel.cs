@@ -1,5 +1,6 @@
 ﻿using ScheduleWidget.Core;
 using ScheduleWidget.Core.Data;
+using ScheduleWidget.Core.Services;
 using ScheduleWidget.MVVM.Model;
 using ScheduleWidget.MVVM.View;
 using System;
@@ -14,9 +15,9 @@ namespace ScheduleWidget.MVVM.ViewModel
 {
     internal class MainWindowViewModel : ObservableObject
     {
-        private ObservableCollection<EditDayModel> _scheduleDays;
+        private ObservableCollection<DayModel> _scheduleDays;
 
-        public ObservableCollection<EditDayModel> ScheduleDays
+        public ObservableCollection<DayModel> ScheduleDays
         {
             get { return _scheduleDays; }
             set { _scheduleDays = value; NotifyPropertyChanged(); }
@@ -41,7 +42,7 @@ namespace ScheduleWidget.MVVM.ViewModel
             set { _daysPanelVisibilty = value; NotifyPropertyChanged(); }
         }
 
-        
+
         #region BUTTONS_COMMAND
         public RelayCommand AddScheduleCommand { get; set; }
         public RelayCommand AddDayCommand { get; set; }
@@ -50,18 +51,30 @@ namespace ScheduleWidget.MVVM.ViewModel
         public RelayCommand TurnWidget { get; set; }
 
         #endregion
+
+        private readonly ScheduleService _scheduleService;
         public MainWindowViewModel()
         {
-            ScheduleDays = new ObservableCollection<EditDayModel>();
+            _scheduleService = new ScheduleService();
+
+            ScheduleDays = new ObservableCollection<DayModel>();
             ScheduleItems = new ObservableCollection<ScheduleModel>();
+
+            foreach (var schedule in _scheduleService.LoadAvialableSchedules())
+            {
+                
+                ScheduleItems.Add(schedule);
+
+            }
+
             ScheduleItems.CollectionChanged += ScheduleItems_CollectionChanged;
 
             AddScheduleCommand = new RelayCommand(o =>
             {
-                AddSchedule();
+                
             });
-            AddDayCommand = new RelayCommand(o => AddDay(_guidTest));
-            //EditDayCommand = new RelayCommand(o => EditDay());
+            //AddDayCommand = new RelayCommand();
+            EditDayCommand = new RelayCommand(o => EditDay(Guid.NewGuid()));
             TurnWidget = new RelayCommand(o =>
             {
                 WidgetWindowView widgetWindow = new WidgetWindowView();
@@ -70,84 +83,10 @@ namespace ScheduleWidget.MVVM.ViewModel
                 widgetWindow.Show();
             });
         }
-
-        private void AddSchedule()
-        {
-            using (var db = new ApplicationDbContext())
-            {
-                var schedule = new ScheduleModel()
-                {
-                    Id = Guid.NewGuid(),
-                    Days = new List<DayModel>(),
-                    IsEvenWeek = true,
-                    Name = "Schedule " + db.Schedules.Count(),
-                };
-                db.Schedules.Add(schedule);
-                db.SaveChanges();
-
-                // fix it, kostyl ili net
-                schedule.LoadScheduleCommand = new RelayCommand(o => { LoadScheduleDays(schedule.Id); });
-                _guidTest = schedule.Id;
-                ScheduleItems.Add(schedule);
-
-            }
-        }
-        private Guid _guidTest;
-
-        private void LoadScheduleDays(Guid scheduleId)
-        {
-            using (var db = new ApplicationDbContext())
-            {
-                var scheduleDays = db.Days.Where(d => d.ScheduleId == scheduleId).ToList();
-                if (scheduleDays is not null)
-                {
-                    foreach (var day in scheduleDays)
-                    {
-                        ScheduleDays.Add(new EditDayModel
-                        {
-                            DayId = day.Id,
-                            DayName = day.Name,
-                            EditDayCommand = new RelayCommand(o =>
-                            {
-
-                                EditDay(day.Id);
-                            })
-                        });
-                    }
-                }
-            }
-        }
-
         private void ScheduleItems_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             DaysPanelVisibility = (ScheduleItems.Count > 0 ? Visibility.Visible : Visibility.Collapsed);
         }
-
-        private void AddDay(Guid scheduleId)
-        {
-            if (ScheduleDays.Count == 7)
-                return;
-
-            using (var db = new ApplicationDbContext())
-            {
-                var days = db.Days.Where(d => d.ScheduleId == scheduleId).ToList();
-                if(days is not null && days.Count < 7)
-                {
-                    var day = new DayModel()
-                    {
-                        Id = Guid.NewGuid(),
-                        ScheduleId = scheduleId,
-                        Name = "Monday",
-                    };
-                }
-            }
-
-            ScheduleDays.Add(new EditDayModel()
-            {
-                EditDayCommand = EditDayCommand
-            });
-        }
-
         private void EditDay(Guid dayId)
         {
             EditDayViewModel editDayViewModel = new EditDayViewModel();
