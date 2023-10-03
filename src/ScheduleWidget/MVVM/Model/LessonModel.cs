@@ -9,16 +9,11 @@ namespace ScheduleWidget.MVVM.Model
 {
     internal class LessonModel
     {
-        [Key]
-        public Guid Id { get; set; }
-
-        public Guid DayId { get; set; }
-        public string? Name { get; set; }
-
-        public int Number { get; set; } = 1;
-        public string? Classroom { get; set; }
-        public string? TeacherName { get; set; }
-        public bool IsLecture { get; set; } = true;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int ScheduleId { get; set; }
+        public ScheduleModel Schedule { get; set; }
+        public List<LessonModel> Lessons { get; set; }
 
 
 

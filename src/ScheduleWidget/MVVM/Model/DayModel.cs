@@ -11,16 +11,11 @@ namespace ScheduleWidget.MVVM.Model
 {
     internal class DayModel
     {
-        [Key]
-        public Guid Id { get; set; }
-        public Guid ScheduleId { get; set; }
-
+        
+        public int Id { get; set; }
         public string Name { get; set; }
-
+        public int ScheduleId { get; set; }
+        public ScheduleModel Schedule { get; set; }
         public List<LessonModel> Lessons { get; set; }
-
-
-        [NotMapped]
-        public RelayCommand LoadLessonsCommand { get; set; }
     }
 }

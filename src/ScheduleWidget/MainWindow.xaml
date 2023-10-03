@@ -31,16 +31,7 @@
     </Window.Resources>
 
     <Grid>
-        <!--<ItemsControl x:Name="test">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="Test text"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
 
-
-            <Button Style="{StaticResource AddButtonStyle}" Click="Button_Click"/>
-        </ItemsControl>-->
         <Border HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="22"
                 BorderThickness="0" Background="#FF3E3E3E" >
             <Grid>

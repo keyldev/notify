@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace ScheduleWidget.MVVM.ViewModel
 {
@@ -52,6 +53,18 @@ namespace ScheduleWidget.MVVM.ViewModel
 
         #endregion
 
+        private ScheduleModel _schedule;
+        public ScheduleModel Schedule
+        {
+            get => _schedule;
+            set
+            {
+                _schedule = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+
         private readonly ScheduleService _scheduleService;
         public MainWindowViewModel()
         {
@@ -60,29 +73,10 @@ namespace ScheduleWidget.MVVM.ViewModel
             ScheduleDays = new ObservableCollection<DayModel>();
             ScheduleItems = new ObservableCollection<ScheduleModel>();
 
-            foreach (var schedule in _scheduleService.LoadAvialableSchedules())
-            {
-                
-                ScheduleItems.Add(schedule);
+            
 
-            }
-
-            ScheduleItems.CollectionChanged += ScheduleItems_CollectionChanged;
-
-            AddScheduleCommand = new RelayCommand(o =>
-            {
-                
-            });
-            //AddDayCommand = new RelayCommand();
-            EditDayCommand = new RelayCommand(o => EditDay(Guid.NewGuid()));
-            TurnWidget = new RelayCommand(o =>
-            {
-                WidgetWindowView widgetWindow = new WidgetWindowView();
-                WidgetViewModel editWidgetViewModel = new WidgetViewModel();
-                widgetWindow.DataContext = editWidgetViewModel;
-                widgetWindow.Show();
-            });
         }
+
         private void ScheduleItems_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             DaysPanelVisibility = (ScheduleItems.Count > 0 ? Visibility.Visible : Visibility.Collapsed);
@@ -97,12 +91,5 @@ namespace ScheduleWidget.MVVM.ViewModel
         }
 
     }
-    internal class EditDayModel
-    {
-        public Guid DayId { get; set; }
-        public string? DayName { get; set; }
-        public string DayDescription { get; set; }
-
-        public RelayCommand EditDayCommand { get; set; }
-    }
+   
 }
