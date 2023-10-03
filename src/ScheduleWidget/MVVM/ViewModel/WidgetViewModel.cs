@@ -1,4 +1,6 @@
 ﻿using ScheduleWidget.Core;
+using ScheduleWidget.Core.Services;
+using ScheduleWidget.MVVM.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,21 +13,31 @@ namespace ScheduleWidget.MVVM.ViewModel
     internal class WidgetViewModel : ObservableObject
     {
 
-        private ObservableCollection<object> _lessonsList;
+        private ObservableCollection<LessonModel> _lessonsList;
 
-        public ObservableCollection<object> LessonsList
+        public ObservableCollection<LessonModel> LessonsList
         {
             get { return _lessonsList; }
             set { _lessonsList = value; NotifyPropertyChanged(); }
         }
 
+        private string _name;
 
-        public WidgetViewModel()
+        public string Name
         {
-            LessonsList = new ObservableCollection<object>();
-            LessonsList.Add(new object());
-            LessonsList.Add(new object());
-            LessonsList.Add(new object());
+            get { return _name; }
+            set { _name = value; NotifyPropertyChanged(); }
+        }
+
+
+        private readonly DayService _dayService;
+        public WidgetViewModel(int dayId)
+        {
+            _dayService = new DayService();
+            Name = _dayService.GetDayNameById(dayId);
+
+            LessonsList = new ObservableCollection<LessonModel>(_dayService.LoadDayLessonsById(dayId));
+
         }
     }
 }

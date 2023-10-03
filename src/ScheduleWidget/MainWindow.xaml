@@ -68,8 +68,8 @@
             </ItemsControl.Template>
 
         </ItemsControl>
-        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,535,0" Content="Save"
-                BorderThickness="0" Height="22" Width="100"/>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,535,0" Content="Включить виджет"
+                BorderThickness="0" Height="22" Width="100" Command="{Binding LoadWidgetCommand}"/>
         <ScrollViewer Width="635" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled"
                       HorizontalAlignment="Left" Margin="165,50,0,0" CanContentScroll="True"
                       Visibility="{Binding DaysPanelVisibility}"

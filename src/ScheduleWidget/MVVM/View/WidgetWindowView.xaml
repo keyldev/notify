@@ -16,7 +16,8 @@
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top"
                    Margin="3" Foreground="Gray">
             <Run Text="Schedule for"/>
-            <Bold>Monday</Bold>
+            <Bold/>
+            <Run Text="{Binding Name}"/>
         </TextBlock>
         <Button HorizontalAlignment="Right" VerticalAlignment="Top"
                 Content="✕" FontSize="8"
@@ -27,12 +28,12 @@
                     <Border Margin="3" CornerRadius="0" BorderThickness="0" Background="#99000000"
                             HorizontalAlignment="Stretch" Height="50">
                         <Grid>
-                            <TextBlock Text="Пара 1" Foreground="Gray" HorizontalAlignment="Left" VerticalAlignment="Top"
+                            <TextBlock Text="{Binding Number}" Foreground="Gray" HorizontalAlignment="Left" VerticalAlignment="Top"
                                        Margin="10"
                                        />
-                            <TextBlock Text="ФИО Препода" Foreground="Gray" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                            <TextBlock Text="{Binding TeacherName}" Foreground="Gray" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Bottom"
                                        Margin="10,0,0,10"/>
-                            <TextBlock Text="309A" Foreground="Gray" FontSize="10" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                            <TextBlock Text="{Binding Classroom}" Foreground="Gray" FontSize="10" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                        Margin="0,0,10,10"/>
                         </Grid>
                     </Border>

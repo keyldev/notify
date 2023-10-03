@@ -49,7 +49,7 @@ namespace ScheduleWidget.MVVM.ViewModel
         public RelayCommand AddDayCommand { get; set; }
         public RelayCommand EditDayCommand { get; set; }
 
-        public RelayCommand TurnWidget { get; set; }
+        public RelayCommand LoadWidgetCommand { get; set; }
 
         #endregion
 
@@ -79,13 +79,17 @@ namespace ScheduleWidget.MVVM.ViewModel
                     OpenDays(schedule.Id);
                 });
             }
+            LoadWidgetCommand = new RelayCommand(o =>
+            {
+                LoadWidget(1);
+            });
         }
         private void OpenDays(int id)
         {
             var days = _scheduleService.GetDaysById(id);
             ScheduleDays.Clear();
 
-            foreach(var day in days)
+            foreach (var day in days)
             {
                 day.LoadLessonsCommand = new RelayCommand(o =>
                 {
@@ -94,6 +98,14 @@ namespace ScheduleWidget.MVVM.ViewModel
                 });
                 ScheduleDays.Add(day);
             }
+        }
+        private void LoadWidget(int dayId)
+        {
+            WidgetViewModel widgetViewModel = new WidgetViewModel(dayId);
+
+            WidgetWindowView widgetWindow = new WidgetWindowView();
+            widgetWindow.DataContext = widgetViewModel;
+            widgetWindow.Show();
         }
         private void EditDay(int dayId)
         {

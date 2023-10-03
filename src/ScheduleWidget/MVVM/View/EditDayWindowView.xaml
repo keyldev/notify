@@ -22,61 +22,65 @@
                 Content="✕" Foreground="Black" BorderThickness="0"
                 Background="Transparent" Margin="0,5,15,0"
                 Command="{Binding SaveLessonsCommand}"/>
-        <ItemsControl HorizontalAlignment="Stretch"
+        <ScrollViewer HorizontalAlignment="Stretch"
                       VerticalAlignment="Top"
                       Margin="5,35,5,0"
-                      Height="220"
+                      Height="220" VerticalScrollBarVisibility="Hidden">
+            <ItemsControl 
                       ItemsSource="{Binding LessonsList}"
                       >
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderThickness="0" HorizontalAlignment="Stretch" Height="50"
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="0" HorizontalAlignment="Stretch" Height="50"
                             Background="#AD000000" CornerRadius="2"
                             Margin="0,0,0,3">
-                        <Grid>
-                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top"
+                            <Grid>
+                                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top"
                                         Orientation="Horizontal" Margin="7,6,0,0">
-                                <TextBlock Text="{Binding Number}"
+                                    <TextBlock Text="{Binding Number}"
                                        FontSize="15"
                                        Foreground="White"
                                        />
-                                <TextBox Text="{Binding Name}" BorderThickness="0"
+                                    <TextBox Text="{Binding Name}" BorderThickness="0"
                                          Foreground="White" VerticalContentAlignment="Center"
                                          FontSize="15" Background="Transparent"
                                      />
-                            </StackPanel>
-                            
-                            <StackPanel Orientation="Horizontal"
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal"
                                         HorizontalAlignment="Left" VerticalAlignment="Bottom"
                                         Margin="5,0,0,6">
-                                <Path Data="M18 10.5V18L21.75 15.75M31.5 18C31.5 25.4559 25.4559 31.5 18 31.5C10.5442 31.5 4.5 25.4559 4.5 18C4.5 10.5442 10.5442 4.5 18 4.5C25.4559 4.5 31.5 10.5442 31.5 18Z"
+                                    <Path Data="M18 10.5V18L21.75 15.75M31.5 18C31.5 25.4559 25.4559 31.5 18 31.5C10.5442 31.5 4.5 25.4559 4.5 18C4.5 10.5442 10.5442 4.5 18 4.5C25.4559 4.5 31.5 10.5442 31.5 18Z"
                                       Fill="Transparent" StrokeThickness="1" Stretch="Uniform"
                                       Stroke="White"
                                       Height="14" Width="14"
                                       />
-                                <TextBlock Foreground="White" VerticalAlignment="Center"
-                                           Margin="3,0,0,0" FontSize="11">
-                                    <Run Text="08:00"/>
-                                    <Run Text="-"/>
-                                    <Run Text="09:30"/>
-                                </TextBlock>
-                            </StackPanel>
-                            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center"
+                                    <!--<TextBlock Foreground="White" VerticalAlignment="Center"
+                                           Margin="3,0,0,0" FontSize="11" Text="{Binding LessonTime}"> 
+                                </TextBlock>-->
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center"
                                         Margin="3,0,4,0">
-                                <TextBox Text="{Binding TeacherName}" BorderThickness="0"
+                                    <TextBox Text="{Binding TeacherName}" BorderThickness="0"
                                          Foreground="White" VerticalContentAlignment="Center"
                                          FontSize="12" Background="Transparent"
                                      />
-                                <TextBox Text="308А" BorderThickness="0"
+                                    <TextBox Text="308А" BorderThickness="0"
                                          Foreground="White" VerticalContentAlignment="Center"
                                          FontSize="11" Background="Transparent"
                                      />
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                                </StackPanel>
+                                <Grid.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Удалить" Command="{Binding DeleteElementCommand}"/>
+                                    </ContextMenu>
+                                </Grid.ContextMenu>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
         <Button HorizontalAlignment="Left" VerticalAlignment="Bottom"
                 Height="30" Width="125" Content="Add lesson" Foreground="White"
                 BorderThickness="0" Margin="5" Background="#616161" Command="{Binding AddNewLessonCommand}">
